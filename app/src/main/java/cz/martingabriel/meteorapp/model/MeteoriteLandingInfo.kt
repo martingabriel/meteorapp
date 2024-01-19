@@ -11,6 +11,7 @@ data class MeteoriteLandingInfo (
     val reclat: String,
     val reclong: String,
     val geolocation: Geolocation,
+
 )
 
 data class Geolocation(
