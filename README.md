@@ -1,7 +1,7 @@
 # Introduction
 Welcome to the repository of MeteorApp, an Android application developed for educational purposes. This app visualise meteorite landing locations based on NASA dataset. This app is written in Kotlin and leverages the power of Jetpack Compose for a modern, declarative UI. It integrates Retrofit for network operations, Google Maps for mapping functionalities, and Geocoder for location services. The data utilized in this app is sourced from NASA's free REST API, providing an insightful look into their publicly available datasets.
 
-## Getting Started
+## Getting started
 
 ### Prerequisites
 - Minimum SDK Version: 31 or higher.
@@ -22,10 +22,10 @@ git clone https://github.com/[YourUsername]/[YourRepoName].git
 ## UI examples
 
 Main activity:
-![main activity example](/img/meteorapp_example_mainActivity.png)
+- ![main activity example](/img/meteorapp_example_mainActivity.png)
 
 Landing detail activity:
-![landing activity example](/img/meteorapp_example_landingDetailActivity.png)
+- ![landing activity example](/img/meteorapp_example_landingDetailActivity.png)
 
 ## Data
 NASA API using comprehensive data set from The Meteoritical Society that contains information on all of the known meteorite landings. API is available here: https://data.nasa.gov/Earth-Science/Meteorite-Landings-API/c2vx-j9ed/about_data

@@ -20,8 +20,8 @@ class MeteoriteLandingDetailActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        // get state name from Geocoder API
-        getStateName(meteoriteLanding)
+        // get country name from Geocoder API
+        getCountryName(meteoriteLanding)
 
         setContent {
             MeteorAppTheme {
@@ -38,7 +38,7 @@ class MeteoriteLandingDetailActivity : AppCompatActivity() {
             }
     }
 
-    fun getStateName(meteoriteLandingInfo: MeteoriteLandingInfo) {
+    fun getCountryName(meteoriteLandingInfo: MeteoriteLandingInfo) {
         geocoder = Geocoder(this, Locale.getDefault())
 
         val result = geocoder.getFromLocation(

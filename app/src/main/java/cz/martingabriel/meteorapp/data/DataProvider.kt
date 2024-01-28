@@ -98,11 +98,8 @@ object DataProvider {
             ) {
                 if (response.isSuccessful) {
                     response.body()?.let {
-                        //meteoriteList = it
                         for (meteoriteLanding in it) {
-                            // bad data fix
-                            if (meteoriteLanding.id != "50693")
-                                meteoriteList.add(meteoriteLanding)
+                            meteoriteList.add(meteoriteLanding)
                             Log.i(TAG, "onResponse: ${meteoriteLanding.id} - ${meteoriteLanding.name} - ${meteoriteLanding.year}")
                         }
                         Log.i(TAG, "Total meteorite landing read count: ${meteoriteList.count()}")
