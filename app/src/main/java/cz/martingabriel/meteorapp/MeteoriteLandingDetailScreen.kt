@@ -1,6 +1,5 @@
 package cz.martingabriel.meteorapp
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -16,13 +15,24 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import com.google.android.gms.maps.model.CameraPosition
+import com.google.android.gms.maps.model.LatLng
+import com.google.maps.android.compose.GoogleMap
+import com.google.maps.android.compose.MapProperties
+import com.google.maps.android.compose.MapType
+import com.google.maps.android.compose.MapUiSettings
+import com.google.maps.android.compose.Marker
+import com.google.maps.android.compose.MarkerState
+import com.google.maps.android.compose.rememberCameraPositionState
 import cz.martingabriel.meteorapp.model.MeteoriteLandingInfo
 
 @Composable
@@ -50,14 +60,39 @@ private fun MeteoriteLandingDetailHeader(
     meteoriteLanding: MeteoriteLandingInfo,
     containerHeight: Dp
 ) {
-    Image(
+    /*Image(
         painter = painterResource(R.drawable.meteorit_icon),
         contentDescription = null,
         contentScale = ContentScale.Crop,
         modifier = Modifier
             .heightIn(max = containerHeight / 2)
             .fillMaxWidth()
-    )
+    )*/
+
+    val landingCoords = LatLng(meteoriteLanding.geolocation.latitude.toDouble(), meteoriteLanding.geolocation.longitude.toDouble())
+    val cameraPositionState = rememberCameraPositionState {
+        position = CameraPosition.fromLatLngZoom(landingCoords, 2f)
+    }
+    var uiSettings by remember { mutableStateOf(MapUiSettings(
+        zoomControlsEnabled = false,
+        scrollGesturesEnabled = false,
+        zoomGesturesEnabled = false
+    )) }
+    var properties by remember { mutableStateOf(MapProperties(mapType = MapType.TERRAIN))}
+
+    GoogleMap(
+        modifier = Modifier
+            .heightIn(max = containerHeight / 2)
+            .fillMaxWidth(),
+        cameraPositionState = cameraPositionState,
+        uiSettings = uiSettings,
+        properties = properties
+    ) {
+        Marker(
+            state = MarkerState(position = landingCoords),
+            title = meteoriteLanding.name
+        )
+    }
 }
 
 @Composable

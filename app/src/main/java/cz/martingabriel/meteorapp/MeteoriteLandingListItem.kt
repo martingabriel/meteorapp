@@ -62,7 +62,9 @@ fun MeteoriteLandingListItem(meteoriteLandingInfo: MeteoriteLandingInfo, navigat
                         modifier = Modifier
                             .padding(horizontal = 5.dp)
                     )
-                    Text(text = meteoriteLandingInfo.recclass, style = typography.bodyMedium)
+                    Text(
+                        text = getMassString(meteoriteLandingInfo.mass),
+                        style = typography.bodyMedium)
                 }
             }
         }
@@ -87,7 +89,8 @@ fun getGeolocationString(geolocation: Geolocation) : String {
 fun getMassString(massInGrams: String): String {
     val massInGramsInt = massInGrams.toFloat().toInt()
     return when {
-        massInGramsInt >= 1_000_000 -> "${massInGramsInt / 1_000_000} tons"
+        massInGramsInt >= 1_999_999 -> "${massInGramsInt / 1_000_000} tons"
+        massInGramsInt >= 1_000_000 && massInGramsInt <= 1_999_999 -> "${massInGramsInt / 1_000_000} ton"
         massInGramsInt >= 1_000 -> "${massInGramsInt / 1_000} kg"
         else -> "$massInGramsInt g"
     }
