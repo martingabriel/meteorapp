@@ -101,6 +101,7 @@ object DataProvider {
                                 meteoriteList.add(meteoriteLanding)
                             Log.i(TAG, "onResponse: ${meteoriteLanding.id} - ${meteoriteLanding.name} - ${meteoriteLanding.year}")
                         }
+                        Log.i(TAG, "Total meteorite landing read count: ${meteoriteList.count()}")
                     }
                 }
             }

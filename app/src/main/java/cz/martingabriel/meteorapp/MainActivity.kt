@@ -1,38 +1,41 @@
 package cz.martingabriel.meteorapp
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
+import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import cz.martingabriel.meteorapp.model.MeteoriteLandingInfo
 import cz.martingabriel.meteorapp.ui.theme.MeteorAppTheme
 
 
 class MainActivity : ComponentActivity() {
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //DataProvider.GetAllMeteoritLandings()
         setContent {
             MeteorAppTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
-                    MeteoriteLandingsContent()
+                MyApp {
+                    startActivity(MeteoriteLandingDetailActivity.newIntent(this, it))
                 }
+                // A surface container using the 'background' color from the theme
+                /*Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
+                    MeteoriteLandingsContent()
+                }*/
             }
         }
     }
 
 }
 
-@Preview(showBackground = true)
+@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
-fun GreetingPreview() {
-    MeteorAppTheme {
-        MeteoriteLandingsContent()
-    }
+fun MyApp(navigateToProfile: (MeteoriteLandingInfo) -> Unit)
+{
+    Scaffold(
+        content = {
+            MeteoriteLandingsContent(navigateToProfile = navigateToProfile)
+        }
+    )
 }

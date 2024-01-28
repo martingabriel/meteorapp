@@ -1,6 +1,7 @@
 package cz.martingabriel.meteorapp
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -19,10 +20,11 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import cz.martingabriel.meteorapp.model.Geolocation
 import cz.martingabriel.meteorapp.model.MeteoriteLandingInfo
 
 @Composable
-fun MeteoriteLandingListItem(meteoriteLandingInfo: MeteoriteLandingInfo) {
+fun MeteoriteLandingListItem(meteoriteLandingInfo: MeteoriteLandingInfo, navigateToProfile: (MeteoriteLandingInfo) -> Unit) {
     Card (
         modifier = Modifier
             .padding(horizontal = 8.dp, vertical = 8.dp)
@@ -31,7 +33,9 @@ fun MeteoriteLandingListItem(meteoriteLandingInfo: MeteoriteLandingInfo) {
         elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
     )
     {
-        Row {
+        Row (
+            Modifier.clickable { navigateToProfile(meteoriteLandingInfo) }
+        ) {
             Image(
                 painter = painterResource(R.drawable.meteorit_icon),
                 contentDescription = null,
@@ -65,11 +69,26 @@ fun MeteoriteLandingListItem(meteoriteLandingInfo: MeteoriteLandingInfo) {
     }
 }
 
-fun getShortYear(date: String) : String {
+fun getShortYear(date: String?) : String {
     val regex = Regex("^.{0,4}")
-    var result: String = ""
+    var result: String = "unknown"
 
-    regex.find(date)?.let { result = it.value }
+    date?.let {
+        regex.find(date)?.let { result = it.value }
+    }
 
     return result
+}
+
+fun getGeolocationString(geolocation: Geolocation) : String {
+    return "Latitude: ${geolocation.latitude} | Longitude: ${geolocation.longitude}"
+}
+
+fun getMassString(massInGrams: String): String {
+    val massInGramsInt = massInGrams.toFloat().toInt()
+    return when {
+        massInGramsInt >= 1_000_000 -> "${massInGramsInt / 1_000_000} tons"
+        massInGramsInt >= 1_000 -> "${massInGramsInt / 1_000} kg"
+        else -> "$massInGramsInt g"
+    }
 }
