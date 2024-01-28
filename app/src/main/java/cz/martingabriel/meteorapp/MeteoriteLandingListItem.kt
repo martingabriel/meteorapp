@@ -92,6 +92,7 @@ fun getMassString(massInGrams: String): String {
         massInGramsInt >= 1_999_999 -> "${massInGramsInt / 1_000_000} tons"
         massInGramsInt >= 1_000_000 && massInGramsInt <= 1_999_999 -> "${massInGramsInt / 1_000_000} ton"
         massInGramsInt >= 1_000 -> "${massInGramsInt / 1_000} kg"
+        massInGramsInt <= 0 -> "invalid"
         else -> "$massInGramsInt g"
     }
 }
