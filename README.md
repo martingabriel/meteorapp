@@ -5,12 +5,12 @@ Welcome to the repository of MeteorApp, an Android application developed for edu
 
 ### Prerequisites
 - Minimum SDK Version: 31 or higher.
-- Android Studio Hedgehog or later.
+- Android Studio Hedgehog or later (developed and tested on this version).
 
 ### Installation
 1. Clone the repository to your local machine:
 ```bash
-git clone https://github.com/[YourUsername]/[YourRepoName].git
+git clone https://github.com/martingabriel/meteorapp.git
 ```
 2. Open the project in Android Studio.
 3. Edit file `app/src/main/res/values/google_maps_api.xml` and fill you Google Maps API key:
