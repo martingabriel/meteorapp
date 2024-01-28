@@ -18,4 +18,5 @@ data class MeteoriteLandingInfo (
 data class Geolocation(
     val latitude: String,
     val longitude: String,
+    var countryName: String
 ) : Serializable

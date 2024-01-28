@@ -60,15 +60,6 @@ private fun MeteoriteLandingDetailHeader(
     meteoriteLanding: MeteoriteLandingInfo,
     containerHeight: Dp
 ) {
-    /*Image(
-        painter = painterResource(R.drawable.meteorit_icon),
-        contentDescription = null,
-        contentScale = ContentScale.Crop,
-        modifier = Modifier
-            .heightIn(max = containerHeight / 2)
-            .fillMaxWidth()
-    )*/
-
     val landingCoords = LatLng(meteoriteLanding.geolocation.latitude.toDouble(), meteoriteLanding.geolocation.longitude.toDouble())
     val cameraPositionState = rememberCameraPositionState {
         position = CameraPosition.fromLatLngZoom(landingCoords, 2f)
@@ -100,6 +91,7 @@ private fun MeteoriteLandingDetailContent(meteoriteLanding: MeteoriteLandingInfo
     Column {
         ContentTitle(meteoriteLanding = meteoriteLanding)
         ContentProperty(label = "Year", value = getShortYear(meteoriteLanding.year))
+        ContentProperty(label = "Country", value = meteoriteLanding.geolocation.countryName)
         ContentProperty(label = "Meteorite classification", value = meteoriteLanding.recclass)
         ContentProperty(label = "Mass", value = getMassString(meteoriteLanding.mass))
         ContentProperty(label = "Geolocation", value = getGeolocationString(meteoriteLanding.geolocation))

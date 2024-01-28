@@ -32,7 +32,8 @@ object DataProvider {
             reclong = "6.083330",
             geolocation = Geolocation(
                 latitude = "50.775",
-                longitude = "6.08333"
+                longitude = "6.08333",
+                countryName = "Example country name 1"
             ),
         ),
         MeteoriteLandingInfo(
@@ -47,7 +48,8 @@ object DataProvider {
             reclong = "10.233330",
             geolocation = Geolocation(
                 latitude = "56.18333",
-                longitude = "10.23333"
+                longitude = "10.23333",
+                countryName = "Example country name 2"
             ),
         ),MeteoriteLandingInfo(
             name = "Abee",
@@ -61,7 +63,8 @@ object DataProvider {
             reclong = "-113.000000",
             geolocation = Geolocation(
                 latitude = "54.21667",
-                longitude = "-113.0"
+                longitude = "-113.0",
+                countryName = "Example country name 3"
             ),
         ),MeteoriteLandingInfo(
             name = "Acapulco",
@@ -75,7 +78,8 @@ object DataProvider {
             reclong = "-99.900000",
             geolocation = Geolocation(
                 latitude = "16.88333",
-                longitude = "-99.9"
+                longitude = "-99.9",
+                countryName = "Example country name 4"
             ),
         ),
     )
